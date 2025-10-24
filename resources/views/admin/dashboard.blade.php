@@ -6,7 +6,6 @@
         <div class="col-md-3">
             <div class="list-group">
                 <a href="{{ route('productos.index') }}" class="list-group-item list-group-item-action">Productos</a>
-                <a href="{{ route('tiposProducto.index') }}" class="list-group-item list-group-item-action">Tipos de Productos</a>
                 <form action="{{ route('logout') }}" method="POST" class="mt-3">
                     @csrf
                     <button type="submit" class="btn btn-danger w-100">Cerrar sesión</button>

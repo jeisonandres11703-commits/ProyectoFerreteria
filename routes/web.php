@@ -20,8 +20,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/', [ProductoController::class, 'index'])->name('home');
 
 // Rutas públicas para ver productos (solo lectura)
-Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
-Route::get('/productos/{id}', [ProductoController::class, 'show'])->name('productos.show');
+
 
 // Rutas protegidas (requieren autenticación)
 Route::middleware(['check.session'])->group(function () {
@@ -32,18 +31,14 @@ Route::middleware(['check.session'])->group(function () {
     // Gestión de productos (admin)
     Route::prefix('admin')->group(function () {
         
-        // CRUD completo de productos
-        Route::resource('productos', ProductoController::class)->except(['index', 'show']);
-        
-        // CRUD completo de tipos de producto
-        Route::resource('tiposProducto', TipoproductoController::class)->names([
-            'index' => 'tiposProducto.index',
-            'create' => 'tiposProducto.create',
-            'store' => 'tiposProducto.store',
-            'edit' => 'tiposProducto.edit',
-            'update' => 'tiposProducto.update',
-            'destroy' => 'tiposProducto.destroy',
-            'show' => 'tiposProducto.show',
-        ]);
+           
+
+       
+
+              // Ruta para obtener datos de productos vía AJAX 
+Route::resource('productos', ProductoController::class);
+Route::get('productos/data/ajax', [ProductoController::class, 'getData'])->name('productos.data');
+
     });
 });
+
